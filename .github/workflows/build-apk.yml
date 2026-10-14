@@ -23,9 +23,11 @@ jobs:
           gradle-version: '8.9'
 
       - name: Build APK
-        run: gradle assembleDebug --stacktrace --info
+        run: |
+          gradle assembleDebug --stacktrace --info --console=plain
 
       - name: Upload APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: LINKON-OT-debug-apk
